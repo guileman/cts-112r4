@@ -2,61 +2,95 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual CHC CTS-112R4 - Guía Rápida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0066cc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Manual CHC CTS-112R4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
             --primary: #0066cc;
-            --secondary: #004499;
-            --accent: #ff6600;
-            --bg: #f5f7fa;
-            --card-bg: #ffffff;
-            --text: #2c3e50;
-            --text-light: #5a6c7d;
-            --border: #e1e8ed;
-            --warning: #ffcc00;
-            --danger: #e74c3c;
-            --success: #27ae60;
+            --primary-dark: #004499;
+            --primary-light: #e6f2ff;
+            --accent: #ff6b35;
+            --accent-light: #fff0eb;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* Header móvil optimizado */
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 2rem 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: sticky;
+            padding: 0;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .header-main {
+            padding: 16px 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            justify-content: space-between;
+            min-height: 60px;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.25rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
         }
 
         .logo span {
@@ -64,1095 +98,1325 @@
         }
 
         .subtitle {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             opacity: 0.9;
-            margin-top: 0.25rem;
-        }
-
-        nav {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 0.5rem;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s;
-            font-size: 0.9rem;
             font-weight: 500;
+            letter-spacing: 0.025em;
         }
 
-        nav a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
+        /* Botón menú hamburguesa */
+        .menu-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius);
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(10px);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
+        .menu-toggle:active {
+            transform: scale(0.95);
+            background: rgba(255,255,255,0.25);
         }
 
-        .sidebar {
-            position: sticky;
-            top: 120px;
-            height: fit-content;
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border: 1px solid var(--border);
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s;
         }
 
-        .sidebar h3 {
-            font-size: 0.9rem;
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Navegación móvil tipo app */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+            backdrop-filter: blur(4px);
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--surface);
+            z-index: 1001;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+        }
+
+        .nav-drawer.active {
+            transform: translateX(-100%);
+        }
+
+        .nav-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 24px 20px;
+            color: white;
+        }
+
+        .nav-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .nav-subtitle {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .nav-content {
+            padding: 16px;
+        }
+
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border);
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            padding: 0 12px;
+            margin-bottom: 8px;
         }
 
-        .toc {
+        .nav-list {
             list-style: none;
         }
 
-        .toc li {
-            margin-bottom: 0.5rem;
+        .nav-list li {
+            margin-bottom: 2px;
         }
 
-        .toc a {
+        .nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
             color: var(--text);
             text-decoration: none;
-            display: block;
-            padding: 0.5rem;
-            border-radius: 8px;
+            border-radius: var(--radius);
+            font-size: 0.9375rem;
+            font-weight: 500;
             transition: all 0.2s;
-            font-size: 0.95rem;
         }
 
-        .toc a:hover {
+        .nav-list a:active {
+            transform: scale(0.98);
+        }
+
+        .nav-list a:hover,
+        .nav-list a.active {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
             background: var(--bg);
-            color: var(--primary);
-            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
 
-        .toc .sub {
-            padding-left: 1.5rem;
-            font-size: 0.85rem;
-            color: var(--text-light);
+        .nav-list a:hover .nav-icon,
+        .nav-list a.active .nav-icon {
+            background: var(--primary);
+            color: white;
         }
 
+        /* Barra de progreso de lectura */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent);
+            z-index: 1002;
+            transition: width 0.1s;
+        }
+
+        /* Contenido principal */
         main {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 3rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border: 1px solid var(--border);
+            padding: 80px 16px 100px;
+            max-width: 100%;
         }
 
-        section {
-            margin-bottom: 4rem;
-            scroll-margin-top: 140px;
+        /* Hero section */
+        .hero {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
+        .hero-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero h1 {
+            font-size: 1.5rem;
             font-weight: 800;
+            color: var(--text);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* Secciones */
+        section {
+            margin-bottom: 32px;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 0 4px;
+        }
+
+        .section-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
         }
 
         h2 {
-            font-size: 1.8rem;
-            margin: 2.5rem 0 1rem;
-            color: var(--secondary);
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--accent);
-            display: inline-block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
         }
 
         h3 {
-            font-size: 1.3rem;
-            margin: 2rem 0 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
             color: var(--text);
+            margin: 24px 0 16px;
+            padding-left: 16px;
+            border-left: 3px solid var(--accent);
         }
 
         h4 {
-            font-size: 1.1rem;
-            margin: 1.5rem 0 0.5rem;
-            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 20px 0 12px;
         }
 
         p {
-            margin-bottom: 1rem;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* Cards mejorados para móvil */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        .card.warning {
+            border-left-color: var(--warning);
+            background: linear-gradient(to right, var(--warning-light), var(--surface));
+        }
+
+        .card.danger {
+            border-left-color: var(--danger);
+            background: linear-gradient(to right, var(--danger-light), var(--surface));
+        }
+
+        .card.success {
+            border-left-color: var(--success);
+            background: linear-gradient(to right, var(--success-light), var(--surface));
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .card.warning .card-icon {
+            background: var(--warning-light);
+        }
+
+        .card.danger .card-icon {
+            background: var(--danger-light);
+        }
+
+        .card.success .card-icon {
+            background: var(--success-light);
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1rem;
             color: var(--text);
         }
 
-        .figure {
-            margin: 2rem 0;
-            text-align: center;
+        .card p,
+        .card li {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        /* Tablas responsive */
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            background: var(--surface);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+            min-width: 300px;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:active {
             background: var(--bg);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
+        }
+
+        /* Imágenes optimizadas para móvil */
+        .figure {
+            margin: 24px 0;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         .figure img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: block;
         }
 
         .figure-caption {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-style: italic;
+            padding: 16px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            line-height: 1.5;
         }
 
         .img-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            gap: 16px;
+            margin: 24px 0;
         }
 
         .img-grid .figure {
             margin: 0;
         }
 
-        .card {
-            background: var(--bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-left: 4px solid var(--primary);
+        /* Pantallas del instrumento - estilo device */
+        .screen-display {
+            background: #1a1a1a;
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            margin: 24px 0;
+            position: relative;
+            box-shadow: 
+                0 0 0 4px #333,
+                0 20px 40px rgba(0,0,0,0.3);
         }
 
-        .card.warning {
-            background: #fffbeb;
-            border-left-color: var(--warning);
+        .screen-display::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
         }
 
-        .card.danger {
-            background: #fef2f2;
-            border-left-color: var(--danger);
+        .screen-display img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            display: block;
         }
 
-        .card.success {
-            background: #f0fdf4;
-            border-left-color: var(--success);
+        .screen-caption {
+            color: #888;
+            margin-top: 16px;
+            font-size: 0.875rem;
+            text-align: center;
+            font-family: 'Courier New', monospace;
         }
 
-        .card-title {
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        ul, ol {
-            margin: 1rem 0 1rem 2rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
+        /* Pasos numerados estilo timeline */
         .steps {
-            counter-reset: step;
             list-style: none;
-            margin-left: 0;
+            margin: 24px 0;
+            padding: 0;
         }
 
         .steps li {
             position: relative;
-            padding-left: 3rem;
-            margin-bottom: 1.5rem;
-            counter-increment: step;
+            padding-left: 56px;
+            padding-bottom: 24px;
+            border-left: 2px solid var(--border);
+            margin-left: 20px;
+        }
+
+        .steps li:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
         }
 
         .steps li::before {
-            content: counter(step);
+            content: attr(data-step);
             position: absolute;
-            left: 0;
+            left: -20px;
             top: 0;
-            width: 2rem;
-            height: 2rem;
-            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--surface);
         }
 
-        kbd {
-            background: #2d3748;
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 0 #1a202c;
+        .step-content {
+            background: var(--surface);
+            padding: 16px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            margin-top: -8px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        .step-content p {
+            margin: 0;
+            font-size: 0.9375rem;
         }
 
-        th {
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        tr:hover {
-            background: var(--bg);
-        }
-
+        /* Grid de partes del instrumento */
         .parts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
         }
 
         .part-item {
-            background: var(--bg);
-            padding: 1rem;
-            border-radius: 8px;
+            background: var(--surface);
+            padding: 16px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
             border-left: 3px solid var(--accent);
         }
 
         .part-letter {
             font-weight: 800;
             color: var(--accent);
-            margin-right: 0.5rem;
+            font-size: 1.125rem;
+            display: block;
+            margin-bottom: 4px;
         }
 
-        .screen-display {
-            background: #2d3748;
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 1.5rem 0;
-            text-align: center;
-            border: 3px solid #4a5568;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        .part-item span:not(.part-letter) {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            display: block;
         }
 
-        .screen-display img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        /* Teclas del instrumento */
+        kbd {
+            background: linear-gradient(to bottom, #3d4852, #2d3748);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 
+                0 2px 0 #1a202c,
+                0 3px 4px rgba(0,0,0,0.2);
+            display: inline-block;
+            margin: 0 2px;
         }
 
-        .screen-caption {
-            color: #a0aec0;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            font-family: monospace;
+        /* Listas */
+        ul, ol {
+            margin: 16px 0;
+            padding-left: 24px;
         }
 
-        .laser-warning {
-            display: inline-flex;
+        li {
+            margin-bottom: 12px;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Botón flotante de acción */
+        .fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--warning);
-            border-radius: 50%;
-            margin-right: 1rem;
-            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 998;
         }
 
-        @media (max-width: 968px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                position: static;
-                order: -1;
-            }
-            
-            .toc {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .toc li {
-                margin: 0;
-            }
-            
-            .toc a {
-                background: var(--bg);
-                font-size: 0.85rem;
-            }
-            
-            main {
-                padding: 1.5rem;
-            }
-
-            .img-grid {
-                grid-template-columns: 1fr;
-            }
+        .fab:active {
+            transform: scale(0.95);
         }
 
-        @media print {
-            header, .sidebar {
-                display: none;
-            }
-            
-            main {
-                box-shadow: none;
-                border: none;
-            }
-
-            .figure {
-                break-inside: avoid;
-            }
+        .fab.hidden {
+            transform: scale(0) rotate(180deg);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Indicador de scroll */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 997;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-indicator.visible {
+            opacity: 1;
+        }
+
+        /* Animaciones */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         section {
-            animation: fadeIn 0.6s ease-out;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        /* Media queries para tablets */
+        @media (min-width: 768px) {
+            main {
+                padding: 100px 24px 120px;
+                max-width: 720px;
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .parts-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .img-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Utilidades */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 16px;
+        }
+
+        .mt-4 {
+            margin-top: 16px;
         }
     </style>
 </head>
 <body>
+    <!-- Barra de progreso -->
+    <div class="reading-progress" id="progress"></div>
+
+    <!-- Header -->
     <header>
-        <div class="header-content">
-            <div>
+        <div class="header-main">
+            <div class="brand">
                 <div class="logo">CHC <span>CTS-112R4</span></div>
-                <div class="subtitle">Guía Rápida - Estación Total</div>
+                <div class="subtitle">Guía Rápida</div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#seguridad">Seguridad</a></li>
-                    <li><a href="#configuracion">Configuración</a></li>
-                    <li><a href="#instrumento">Instrumento</a></li>
-                    <li><a href="#interfaz">Interfaz</a></li>
-                    <li><a href="#mediciones">Mediciones</a></li>
-                    <li><a href="#estaca">Estaca</a></li>
-                    <li><a href="#datos">Datos</a></li>
-                </ul>
-            </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <div class="container">
-        <aside class="sidebar">
-            <h3>Contenido</h3>
-            <ul class="toc">
-                <li><a href="#seguridad">1. Información Importante</a></li>
-                <li class="sub"><a href="#laser">Productos Láser</a></li>
-                <li><a href="#configuracion">2. Configuración</a></li>
-                <li><a href="#instrumento">3. Descripción del Instrumento</a></li>
-                <li><a href="#interfaz">4. Interfaz de Usuario</a></li>
-                <li class="sub"><a href="#teclado">Teclado</a></li>
-                <li class="sub"><a href="#nivelacion">Centrado y Nivelación</a></li>
-                <li><a href="#mediciones">5. Mediciones</a></li>
-                <li class="sub"><a href="#angulos">Medición de Ángulos</a></li>
-                <li class="sub"><a href="#distancia">Medida de Distancia</a></li>
-                <li class="sub"><a href="#coordenadas">Medición de Coordenadas</a></li>
-                <li><a href="#estaca">6. Estaca (Layout)</a></li>
-                <li class="sub"><a href="#layout-dist">Medida de Distancia</a></li>
-                <li class="sub"><a href="#side-shot">Tiro Lateral</a></li>
-                <li><a href="#datos">7. Gestión de Datos</a></li>
-                <li class="sub"><a href="#import-export">Importación/Exportación</a></li>
-                <li class="sub"><a href="#pc">Conexión PC</a></li>
-                <li><a href="#cuidado">8. Cuidado y Transporte</a></li>
-            </ul>
-        </aside>
+    <!-- Overlay -->
+    <div class="nav-overlay" id="navOverlay"></div>
 
-        <main>
-            <section id="intro">
-                <h1>Guía Rápida CHC CTS-112R4</h1>
-                <p>Esta guía contiene instrucciones importantes para la configuración y operación de la Estación Total CHC CTS-112R4. Incluye normas de seguridad, procedimientos de medición y gestión de datos.</p>
-                
-                <div class="card">
-                    <div class="card-title">📋 Uso Previsto</div>
-                    <ul>
-                        <li>Medición de ángulos horizontales y verticales</li>
-                        <li>Medición de distancias</li>
-                        <li>Grabación de medidas</li>
-                        <li>Visualización del eje de dirección y verticales</li>
-                    </ul>
+    <!-- Drawer de navegación -->
+    <nav class="nav-drawer" id="navDrawer">
+        <div class="nav-header">
+            <div class="nav-title">Contenido</div>
+            <div class="nav-subtitle">Manual de Estación Total</div>
+        </div>
+        <div class="nav-content">
+            <div class="nav-section">
+                <div class="nav-section-title">General</div>
+                <ul class="nav-list">
+                    <li><a href="#intro" class="nav-link"><span class="nav-icon">🏠</span> Inicio</a></li>
+                    <li><a href="#seguridad" class="nav-link"><span class="nav-icon">⚠️</span> Seguridad</a></li>
+                </ul>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Configuración</div>
+                <ul class="nav-list">
+                    <li><a href="#configuracion" class="nav-link"><span class="nav-icon">🔧</span> Configuración</a></li>
+                    <li><a href="#instrumento" class="nav-link"><span class="nav-icon">🔭</span> Instrumento</a></li>
+                    <li><a href="#interfaz" class="nav-link"><span class="nav-icon">⌨️</span> Interfaz</a></li>
+                </ul>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Operación</div>
+                <ul class="nav-list">
+                    <li><a href="#mediciones" class="nav-link"><span class="nav-icon">📐</span> Mediciones</a></li>
+                    <li><a href="#estaca" class="nav-link"><span class="nav-icon">📍</span> Estaca/Layout</a></li>
+                    <li><a href="#datos" class="nav-link"><span class="nav-icon">💾</span> Gestión de Datos</a></li>
+                </ul>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Mantenimiento</div>
+                <ul class="nav-list">
+                    <li><a href="#cuidado" class="nav-link"><span class="nav-icon">🛡️</span> Cuidado</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Indicador de scroll -->
+    <div class="scroll-indicator" id="scrollIndicator">Desliza para continuar ↓</div>
+
+    <!-- Contenido principal -->
+    <main>
+        <section id="intro" class="hero">
+            <div class="hero-icon">🎯</div>
+            <h1>Guía Rápida CHC CTS-112R4</h1>
+            <p>Estación Total profesional para topografía de precisión. Incluye normas de seguridad, configuración paso a paso y operación completa.</p>
+        </section>
+
+        <section id="seguridad">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>Información Importante</h2>
+            </div>
+            
+            <div class="card warning">
+                <div class="card-header">
+                    <div class="card-icon">⚠️</div>
+                    <div class="card-title">Precaución General</div>
                 </div>
+                <p>Este manual contiene normas de seguridad importantes. Lea atentamente antes de usar el equipo.</p>
+            </div>
 
-                <div class="card">
-                    <div class="card-title">🌍 Ambiente</div>
-                    <p>Adecuado para uso en ambientes apropiados para la habitación humana permanente. <strong>No es adecuado para uso en ambientes agresivos o extremos.</strong></p>
-                </div>
-            </section>
-
-            <section id="seguridad">
-                <h2>1. Información Importante sobre Instrumentos</h2>
-                
-                <div class="card warning">
-                    <div class="card-title"><span class="laser-warning">⚠️</span> Precaución General</div>
-                    <p>Este manual contiene normas de seguridad importantes. Lea atentamente antes de usar el equipo.</p>
-                </div>
-
-                <h3 id="laser">Productos Láser</h3>
-                <p>Los instrumentos contienen los siguientes productos láser:</p>
-                
+            <h3>Productos Láser</h3>
+            <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Producto Láser</th>
-                            <th>Clase de Láser</th>
+                            <th>Producto</th>
+                            <th>Clase</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Módulo de medición electrónica de distancias (EDM) - mediciones con prisma</td>
+                            <td>EDM con prisma</td>
                             <td><strong>Clase 1</strong></td>
                         </tr>
                         <tr>
-                            <td>Módulo EDM - mediciones sin reflector</td>
-                            <td><strong>Clase 3R</strong></td>
+                            <td>EDM sin reflector</td>
+                            <td><strong style="color: var(--danger)">Clase 3R</strong></td>
                         </tr>
                         <tr>
                             <td>Plomada láser</td>
-                            <td><strong>Clase 2</strong></td>
+                            <td><strong style="color: var(--warning)">Clase 2</strong></td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
 
-                <div class="card danger">
-                    <div class="card-title">⚠️ Precaución - Clase 3R</div>
-                    <p>Desde una perspectiva de seguridad, los productos láser de clase 3R deben tomar precauciones:</p>
-                    <ol>
-                        <li>Evitar la exposición directa del ojo a la viga</li>
-                        <li>No dirigir el rayo a terceros</li>
-                    </ol>
+            <div class="card danger">
+                <div class="card-header">
+                    <div class="card-icon">🚨</div>
+                    <div class="card-title">Clase 3R - Precaución</div>
                 </div>
-
-                <div class="card warning">
-                    <div class="card-title">⚠️ Precaución - Clase 2</div>
-                    <p>Los productos láser de clase 2 no son intrínsecamente seguros para los ojos:</p>
-                    <ol>
-                        <li>Evitar mirar directamente al rayo</li>
-                        <li>Evitar dirigir el rayo a otras personas</li>
-                    </ol>
-                </div>
-            </section>
-
-            <section id="configuracion">
-                <h2>2. Configuración de Estación Total</h2>
-                <p>Configuración del instrumento utilizando la plomada láser sobre una marca en el terreno.</p>
-
-                <div class="card">
-                    <div class="card-title">💡 Nota</div>
-                    <p>Siempre es posible estacionar el instrumento sin la necesidad de un punto marcado en el suelo.</p>
-                </div>
-
-                <div class="figure">
-                    <img src="images/tripode-posicion.png" alt="Posición correcta del trípode">
-                    <div class="figure-caption">Figura 1: Posición correcta (izquierda) e incorrecta (derecha) de la cabeza del trípode</div>
-                </div>
-
-                <h3>Procedimiento de Configuración</h3>
-                
-                <div class="img-grid">
-                    <div class="figure">
-                        <img src="images/tripode-estabilizar.png" alt="Estabilización del trípode">
-                        <div class="figure-caption">Figura 2: Estabilización de patas - método correcto (a) vs incorrecto (b)</div>
-                    </div>
-                    <div class="figure">
-                        <img src="images/tripode-nivelar.png" alt="Nivelación con tornillos">
-                        <div class="figure-caption">Figura 3: Uso de tornillos nivelantes (A, B, C)</div>
-                    </div>
-                </div>
-
-                <div class="figure">
-                    <img src="images/tripode-ajuste.png" alt="Ajuste del trípode">
-                    <div class="figure-caption">Figura 4: Ajuste de altura y centrado del instrumento</div>
-                </div>
-
-                <ol class="steps">
-                    <li>Extender las patas del trípode a la medida necesaria y apretar los tornillos. Coloque el trípode de manera que la placa sea lo más horizontal posible y las patas sean firmes en el suelo.</li>
-                    
-                    <li>Para garantizar estabilidad, presionar las patas en el suelo. La fuerza debe aplicarse a lo largo de las patas.</li>
-                    
-                    <li>Proteger el instrumento de la luz solar directa y evitar cambios bruscos de temperatura.</li>
-                    
-                    <li>Retire el instrumento del contenedor. Centre la estación total en el trípode y fíjelo con el tornillo de fijación.</li>
-                    
-                    <li>Nivelar aproximadamente con la burbuja de ojo de buey. Girar dos tornillos de pie juntos en direcciones opuestas. El dedo índice indica la dirección en que la burbuja debe moverse. Use el tercer tornillo para centrar la burbuja.</li>
-                    
-                    <li>Girar la plomada láser del instrumento. Encender la estación total y hacer clic en el botón de estrella <kbd>★</kbd> para hacer centrado y nivelación. La plomada láser se encenderá automáticamente. Use el botón de dirección para ajustar el brillo.</li>
-                    
-                    <li>Mover las patas del trípode y usar los tornillos de pie nivelante para centrar la plomada sobre el punto del suelo.</li>
-                    
-                    <li>Ajustar las patas del trípode para nivelar el nivel esférico.</li>
-                    
-                    <li>Usando la burbuja de ojo de buey, girar los tornillos de pie base nivelante para nivelar con precisión el instrumento.</li>
-                    
-                    <li>Ligeramente aflojar el tornillo de fijación central, mantener la base con ambas manos, y mover el instrumento para que el láser esté alineado con precisión sobre el punto.</li>
-                    
-                    <li>Repetir los pasos 9 y 10 hasta obtener la precisión requerida.</li>
-                </ol>
-            </section>
-
-            <section id="instrumento">
-                <h2>3. Descripción del Instrumento</h2>
-                
-                <h3>Componentes del Equipo - Cara I</h3>
-                <div class="figure">
-                    <img src="images/instrumento-cara1.png" alt="Componentes Cara I">
-                    <div class="figure-caption">Figura 5: Vista frontal del instrumento (Cara I)</div>
-                </div>
-
-                <div class="parts-grid">
-                    <div class="part-item"><span class="part-letter">a)</span> Etiqueta de clase Láser</div>
-                    <div class="part-item"><span class="part-letter">b)</span> Unidad Vertical</div>
-                    <div class="part-item"><span class="part-letter">c)</span> Abrazadera Vertical</div>
-                    <div class="part-item"><span class="part-letter">d)</span> Puerto de tarjeta SD</div>
-                    <div class="part-item"><span class="part-letter">e)</span> Mini-USB interfaz</div>
-                    <div class="part-item"><span class="part-letter">f)</span> Base nivelante</div>
-                    <div class="part-item"><span class="part-letter">g)</span> Número de serie del instrumento</div>
-                    <div class="part-item"><span class="part-letter">h)</span> Nivel de burbuja</div>
-                    <div class="part-item"><span class="part-letter">i)</span> Pantalla frontal</div>
-                    <div class="part-item"><span class="part-letter">j)</span> Cara teclado</div>
-                </div>
-
-                <h3>Componentes del Equipo - Cara II</h3>
-                <div class="figure">
-                    <img src="images/instrumento-cara2.png" alt="Componentes Cara II">
-                    <div class="figure-caption">Figura 6: Vista trasera del instrumento (Cara II)</div>
-                </div>
-
-                <div class="parts-grid">
-                    <div class="part-item"><span class="part-letter">k)</span> Asa de transporte con montaje tornillo</div>
-                    <div class="part-item"><span class="part-letter">l)</span> De puntería</div>
-                    <div class="part-item"><span class="part-letter">m)</span> Objetivo integrado con EDM</div>
-                    <div class="part-item"><span class="part-letter">n)</span> Pantalla de la cara II</div>
-                    <div class="part-item"><span class="part-letter">o)</span> Teclado cara II</div>
-                    <div class="part-item"><span class="part-letter">p)</span> Plomada láser</div>
-                    <div class="part-item"><span class="part-letter">q)</span> Tapa de la batería</div>
-                    <div class="part-item"><span class="part-letter">r)</span> Abrazadera horizontal</div>
-                    <div class="part-item"><span class="part-letter">s)</span> Unidad Horizontal</div>
-                    <div class="part-item"><span class="part-letter">t)</span> Tornillo de nivelación</div>
-                </div>
-            </section>
-
-            <section id="interfaz">
-                <h2>4. Interfaz de Usuario</h2>
-                
-                <h3 id="teclado">Descripción del Teclado</h3>
-                <p>Al encender la estación total, se mostrará la pantalla en modo de medición de ángulos (menú de tres líneas).</p>
-
-                <div class="figure">
-                    <img src="images/teclado-completo.png" alt="Teclado y pantalla">
-                    <div class="figure-caption">Figura 7: Distribución del teclado y pantalla</div>
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tecla</th>
-                            <th>Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><kbd>★</kbd></td>
-                            <td><strong>Botón de función estrellas:</strong> Elegir tipo de reflector, intensidad de plomada, iluminación de cruz y pantalla</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>⏻</kbd></td>
-                            <td><strong>Encendido/Apagado:</strong> Cambia el instrumento encendido o apagado</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>ANG</kbd></td>
-                            <td><strong>Medición de ángulos:</strong> Modo funcional de medición de ángulos</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>DIST</kbd></td>
-                            <td><strong>Medición de distancia:</strong> Modo funcional de medición de distancia</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>CORD</kbd></td>
-                            <td><strong>Medición de coordenadas:</strong> Modo de funcionamiento de coordenadas</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>MENU</kbd></td>
-                            <td><strong>Menú:</strong> Administrar puntos conocidos, replanteo, almacenamiento, versión y configuración</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>ESC</kbd></td>
-                            <td><strong>Escape:</strong> Salida de la interfaz actual</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>ENT</kbd></td>
-                            <td><strong>Enter:</strong> Confirma entrada y continúa al siguiente campo</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>F1-F4</kbd></td>
-                            <td><strong>Funciones variables:</strong> Asignadas a funciones mostradas en la parte inferior de la pantalla</td>
-                        </tr>
-                        <tr>
-                            <td>Alfanumérico</td>
-                            <td>Entrada de texto y valores numéricos</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3 id="nivelacion">Centrado y Nivelación, Ajustes de Mediciones</h3>
-                
-                <div class="screen-display">
-                    <img src="images/pantalla-angulos.png" alt="Pantalla de ángulos">
-                    <div class="screen-caption">Pantalla principal - Modo Medición de Ángulos</div>
-                </div>
-
-                <ol>
-                    <li>Encienda la estación total y haga clic en el botón de estrella <kbd>★</kbd> para ir al menú de centrado y nivelación. La plomada láser se encenderá automáticamente.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/pantalla-ajustes.png" alt="Ajustes de medición">
-                        <div class="screen-caption">Menú de ajustes - Temperatura, Presión, Prisma, PPM</div>
-                    </div>
-
-                    <li>Use el botón de dirección para elegir el tipo de reflector o ajustar el brillo de la luz láser, brillo y contraste de pantalla.</li>
-                    <li>Presione <kbd>F3</kbd> para dejar la plomada láser encendida permanentemente.</li>
-                    <li>Presione <kbd>F4</kbd> para ajustar temperatura, presión, prisma y PPM (generalmente establecido por defecto).</li>
-                </ol>
-            </section>
-
-            <section id="mediciones">
-                <h2>5. Mediciones</h2>
-                
-                <h3 id="angulos">5.1 Medición de Ángulos</h3>
-                
-                <div class="screen-display">
-                    <img src="images/angulos-inicio.png" alt="Medición de ángulos">
-                    <div class="screen-caption">Pantalla de Medición de Ángulos - Vista inicial</div>
-                </div>
-
-                <ol>
-                    <li>Encienda la estación total y haga clic en <kbd>ANG</kbd>.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/angulos-menu-file.png" alt="Menú de archivo">
-                        <div class="screen-caption">Página 3 - Opciones CPMS, R/L, FILE</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>F4</kbd> dos veces y luego en <kbd>F3</kbd> (FILE) para crear un nuevo archivo.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/angulos-crear-archivo.png" alt="Crear archivo">
-                        <div class="screen-caption">Creación de archivo de medición</div>
-                    </div>
-
-                    <li>Ingrese el nombre del archivo y confirme.</li>
-                    <li>Apunte al objetivo y bloquee los tornillos de sujeción vertical y horizontal.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/angulos-set-cero.png" alt="Setear ángulo a cero">
-                        <div class="screen-caption">Confirmación - ¿Establecer ángulo horizontal a 0?</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>OSET</kbd> <kbd>F2</kbd> para ajustar el ángulo Hz a 0.</li>
-                    <li>Haga clic en <kbd>SI</kbd> <kbd>F4</kbd> para confirmar.</li>
-                    <li>Apunte al siguiente objetivo.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/angulos-grabar.png" alt="Grabar ángulo">
-                        <div class="screen-caption">Grabar medición de ángulo - REC?</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>REC?</kbd> <kbd>F1</kbd> para registrar el ángulo.</li>
-                </ol>
-
-                <h3 id="distancia">5.2 Medida de Distancia</h3>
-                
-                <div class="screen-display">
-                    <img src="images/distancia-medida.png" alt="Medición de distancia">
-                    <div class="screen-caption">Pantalla de Medición de Distancia - SD, HD, VD</div>
-                </div>
-
-                <ol>
-                    <li>Encienda la estación total y haga clic en <kbd>DIST</kbd>.</li>
-                    <li>Para crear un nuevo archivo, consulte el procedimiento anterior; de lo contrario, los datos se almacenarán en el último proyecto.</li>
-                    <li>Apunte al objetivo y haga clic en <kbd>MEAS</kbd> <kbd>F2</kbd> para medir la distancia.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/distancia-grabar.png" alt="Grabar distancia">
-                        <div class="screen-caption">Grabar datos de distancia - REC?</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>REC?</kbd> <kbd>F1</kbd> para grabar los datos. Seleccione <kbd>SI</kbd> <kbd>F4</kbd> para confirmar.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/distancia-offset.png" alt="Modos de medición">
-                        <div class="screen-caption">Página 2 - OFFSET, S.O, FILE</div>
-                    </div>
-
-                    <li>Puede pulsar <kbd>MODE</kbd> <kbd>F3</kbd> y seleccionar el modo de encuesta diferente. Hay 4 opciones:
-                        <ul>
-                            <li>Medir el tiempo 1</li>
-                            <li>Medida 3 veces</li>
-                            <li>Encuesta repetida</li>
-                            <li>Tracking</li>
-                        </ul>
-                    </li>
-                    <li>Haga clic en <kbd>F4</kbd> para usar la función de replanteo, distancia de desplazamiento y distancia.</li>
-                </ol>
-
-                <h3 id="coordenadas">5.3 Medición de Coordenadas</h3>
-                
-                <div class="screen-display">
-                    <img src="images/coordenadas-nez.png" alt="Medición de coordenadas">
-                    <div class="screen-caption">Pantalla de Coordenadas - N, E, Z</div>
-                </div>
-
-                <ol>
-                    <li>Haga clic en <kbd>CORD</kbd> y pulse <kbd>F4</kbd> para ir a la página 2. Para restablecer el punto de vista vaya a <kbd>BS</kbd> <kbd>F2</kbd>. <kbd>HT</kbd> <kbd>F1</kbd> para ajustar altura.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/coordenadas-occ-pt.png" alt="Punto de ocupación">
-                        <div class="screen-caption">Entrada de Punto de Ocupación (OCC.PT)</div>
-                    </div>
-
-                    <li>Primero debe ingresar el punto de estación de la estación total. El punto puede ser de la lista (haga clic en <kbd>LIST</kbd> <kbd>F2</kbd>) o introducir coordenadas manualmente.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/coordenadas-ins-ht.png" alt="Altura del instrumento">
-                        <div class="screen-caption">Entrada de Altura del Instrumento (INS.HT)</div>
-                    </div>
-
-                    <li>Mida e ingrese la altura de la estación total. Pulse <kbd>ENT</kbd> <kbd>F4</kbd> para confirmar.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/coordenadas-bks-pt.png" alt="Punto de retrovisión">
-                        <div class="screen-caption">Entrada de Punto de Retrovisión (BKS PT)</div>
-                    </div>
-
-                    <li>La página siguiente le recordará que debe establecer el punto de retrovisión (BS). Confirme.</li>
-                    <li>Apunte al blanco y bloquee los tornillos. Ingrese las coordenadas BS y haga clic en <kbd>ENT</kbd> <kbd>F4</kbd>.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/coordenadas-backsight.png" alt="Confirmar retrovisión">
-                        <div class="screen-caption">Confirmación de ángulo de retrovisión</div>
-                    </div>
-
-                    <li>Una retrovisión aparecerá. Haga clic en <kbd>SI</kbd> para confirmar o vuelva a medir.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/coordenadas-r-ht.png" alt="Altura del objetivo">
-                        <div class="screen-caption">Entrada de Altura del Objetivo (R.HT)</div>
-                    </div>
-
-                    <li>Ingrese la altura del objetivo y pulse <kbd>ENT</kbd>.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/coordenadas-diferencias.png" alt="Diferencias de coordenadas">
-                        <div class="screen-caption">Visualización de diferencias (dN, dE, dZ)</div>
-                    </div>
-
-                    <li>Apunte al objetivo con el telescopio, haga clic en <kbd>F4</kbd>.</li>
-                    <li>Compruebe el error de coordenadas del punto de retrovisión. Haga clic en <kbd>F4</kbd> para medir las coordenadas.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/coordenadas-medir.png" alt="Medir coordenadas">
-                        <div class="screen-caption">Medición final de coordenadas</div>
-                    </div>
-
-                    <li>Vuelva a la Página 1 y haga clic en <kbd>MEAS</kbd> <kbd>F2</kbd> para medir las coordenadas del punto. Haga clic en <kbd>ALL</kbd> <kbd>F1</kbd> para grabar este punto.</li>
-                </ol>
-            </section>
-
-            <section id="estaca">
-                <h2>6. Estaca (Layout)</h2>
-                
-                <h3 id="layout-dist">6.1 Medida de Distancia</h3>
-                
-                <div class="screen-display">
-                    <img src="images/layout-menu-principal.png" alt="Menú principal">
-                    <div class="screen-caption">Menú Principal - Opción 2: LAYOUT</div>
-                </div>
-
-                <ol>
-                    <li>Encienda y haga clic en el botón <kbd>MENU</kbd>, luego haga clic en el teclado <kbd>2</kbd> para seleccionar la función de replanteo (LAYOUT).</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-lista-archivos.png" alt="Lista de archivos">
-                        <div class="screen-caption">Lista de archivos disponibles</div>
-                    </div>
-
-                    <li>Cargue un archivo de coordenadas, haga clic en <kbd>IMP.</kbd> <kbd>F2</kbd> para elegir un archivo existente en la lista.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-importar.png" alt="Importar archivo">
-                        <div class="screen-caption">Importar desde archivo CSV/TXT</div>
-                    </div>
-
-                    <li>También puede importar puntos de la tarjeta SD. Haga clic en <kbd>IMP.</kbd> <kbd>F2</kbd> para importar puntos de otro archivo seleccionado.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-menu-opciones.png" alt="Menú Layout">
-                        <div class="screen-caption">Menú LAYOUT - OCC.PT INPUT, BACKSIGHT, LAYOUT PT, SIDE SHOT</div>
-                    </div>
-
-                    <li>La estación total mostrará las opciones de Layout:
-                        <ul>
-                            <li><strong>OCC.PT INPUT:</strong> Insertar coordenadas de estación total</li>
-                            <li><strong>BACKSIGHT:</strong> Determinar la dirección</li>
-                            <li><strong>LAYOUT PT:</strong> Replanteo de puntos</li>
-                            <li><strong>SIDE SHOT:</strong> Medir un punto de tiro</li>
-                        </ul>
-                    </li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-occ-pt-input.png" alt="Entrada OCC.PT">
-                        <div class="screen-caption">Entrada de Punto de Ocupación para Layout</div>
-                    </div>
-
-                    <li>Presione <kbd>1</kbd> para elegir coordenadas de punto de ocupación. Entrada conocida de punto de coordenadas o elija el punto de la lista.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-set-backsight.png" alt="Establecer retrovisión">
-                        <div class="screen-caption">¿Establecer punto de retrovisión?</div>
-                    </div>
-
-                    <li>Retrovisión: Entrada de coordenadas o selección de lista.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-seleccionar-punto.png" alt="Seleccionar punto">
-                        <div class="screen-caption">Selección de punto para replanteo</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>3</kbd> para replantear puntos conocidos. Hay dos opciones: entrada manual o selección de lista.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-input-r-ht.png" alt="Altura prisma">
-                        <div class="screen-caption">Entrada de altura del prisma (R.HT)</div>
-                    </div>
-
-                    <li>Ingrese la altura del prisma y haga clic en <kbd>ENT</kbd>.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-calculado.png" alt="Cálculo layout">
-                        <div class="screen-caption">Valores calculados de replanteo (HR, HD)</div>
-                    </div>
-
-                    <li>La interfaz mostrará el resultado calculado del replanteo. Elija <kbd>DIST</kbd> <kbd>F1</kbd> o <kbd>NEZ</kbd> <kbd>F2</kbd> para cambiar entre interfaces.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-diferencias.png" alt="Diferencias layout">
-                        <div class="screen-caption">Diferencias de replanteo (dHR, dHD, dZ)</div>
-                    </div>
-
-                    <li><kbd>MEAS</kbd> <kbd>F1</kbd> para medir y obtener la distancia entre el punto replanteado y el objetivo.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/layout-guia.png" alt="Guía de replanteo">
-                        <div class="screen-caption">Modo Guía de Replanteo - Indicadores direccionales</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>GUIDE</kbd> <kbd>F3</kbd> para entrar en el modo de guía de replanteo. Gire la estación total para apuntar al blanco, <kbd>MEAS</kbd> <kbd>F1</kbd> para medir. Finalmente encontrará el punto de diseño.</li>
-                </ol>
-
-                <h3 id="side-shot">6.2 Tiro Lateral (Side Shot)</h3>
-                
-                <div class="screen-display">
-                    <img src="images/layout-menu-side-shot.png" alt="Menú Side Shot">
-                    <div class="screen-caption">Menú LAYOUT - Opción 4: SIDE SHOT</div>
-                </div>
-
-                <ol>
-                    <li>El tiro lateral se utiliza para estudiar y establecer un punto como punto de referencia.</li>
-                    <li>Seleccione <kbd>4.SIDE SHOT</kbd> en el menú LAYOUT.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/side-shot-pantalla.png" alt="Pantalla Side Shot">
-                        <div class="screen-caption">Pantalla de Tiro Lateral</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>MEAS</kbd> <kbd>F4</kbd> para medir el punto y grabarlo.</li>
-                </ol>
-            </section>
-
-            <section id="datos">
-                <h2>7. Gestión de Datos</h2>
-                
-                <h3 id="import-export">7.1 Importación y Exportación de Datos</h3>
-                
-                <div class="screen-display">
-                    <img src="images/datos-menu-memory.png" alt="Menú Memory">
-                    <div class="screen-caption">Menú Principal - Opción 3: MEMORY MGR</div>
-                </div>
-
-                <ol>
-                    <li>Encienda y haga clic en <kbd>MENU</kbd>, luego haga clic en <kbd>3</kbd> para elegir MEMORY MGR (Gestión de Memoria).</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/datos-memory-mgr.png" alt="Memory Manager">
-                        <div class="screen-caption">Menú Memory Manager</div>
-                    </div>
-
-                    <li>Acceda a la función de gestión de archivos.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/datos-file-maintain.png" alt="File Maintain">
-                        <div class="screen-caption">Mantenimiento de Archivos - Lista de archivos</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>1</kbd> para seleccionar un archivo existente o crear uno nuevo. Haga clic en <kbd>NEW</kbd> <kbd>F1</kbd> para crear nuevo archivo.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/datos-archivo-importado.png" alt="Archivo importado">
-                        <div class="screen-caption">Archivo importado en la lista</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>IMP.</kbd> <kbd>F2</kbd> para elegir el archivo a importar. El CTS-112R4 admite archivos <code>.TXT</code>, <code>.CSV</code> y <code>.DAT</code>.</li>
-                    
-                    <div class="screen-display">
-                        <img src="images/datos-opciones-archivo.png" alt="Opciones de archivo">
-                        <div class="screen-caption">Opciones de archivo: ATTR, RENAME, DEL</div>
-                    </div>
-
-                    <li>Haga clic en <kbd>EXP.</kbd> <kbd>F3</kbd> para exportar datos. Se crearán automáticamente cuatro archivos en la tarjeta SD:
-                        <ul>
-                            <li><code>Name_600.TXT</code></li>
-                            <li><code>Name_300.1X1</code></li>
-                            <li><code>Name.DA1</code></li>
-                            <li><code>Name.CSV</code></li>
-                        </ul>
-                    </li>
-                    <li>Elija <kbd>F4</kbd> para ver atributos de archivo, cambiar nombre o borrar archivos.</li>
-                </ol>
-
-                <h3 id="pc">7.2 Importación y Exportación de Datos a PC</h3>
-                
-                <div class="screen-display">
-                    <img src="images/datos-u-disk-mode.png" alt="U Disk Mode">
-                    <div class="screen-caption">Modo U Disk - Conectado a PC</div>
-                </div>
-
-                <ol>
-                    <li>Conecte la PC a través del puerto mini-USB usando un cable mini-USB (incluido en el contenedor).</li>
-                    <li>Haga clic en el botón del teclado <kbd>5</kbd> para conectar la estación total a la PC.</li>
-                    <li>La estación total puede ser vista como lector de tarjetas (U Disk Mode).</li>
-                    <li>El CTS-112R4 soporta importación y exportación de datos a PC.</li>
-                </ol>
-            </section>
-
-            <section id="cuidado">
-                <h2>8. Cuidado y Transporte</h2>
-                
-                <h3>8.1 Transporte</h3>
-                
-                <h4>Transporte en el Campo</h4>
                 <ul>
-                    <li>Llevar el instrumento en su maletín original</li>
-                    <li>O llevar el trípode con las patas abiertas encima del hombro, con el instrumento colocado en posición vertical</li>
+                    <li>Evitar exposición directa del ojo a la viga</li>
+                    <li>No dirigir el rayo a terceros</li>
                 </ul>
+            </div>
+        </section>
 
-                <h4>Transporte en Vehículo</h4>
-                <div class="card warning">
-                    <div class="card-title">⚠️ Importante</div>
-                    <p>No lleve nunca el instrumento suelto en un vehículo de carretera, ya que puede resultar dañado por golpes y vibraciones. Siempre transporte el instrumento en su maletín y bien asegurado.</p>
+        <section id="configuracion">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>Configuración</h2>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💡 Tip</div>
+                <p>Siempre es posible estacionar el instrumento sin necesidad de un punto marcado en el suelo.</p>
+            </div>
+
+            <div class="figure">
+                <img src="images/tripode-posicion.png" alt="Posición del trípode" loading="lazy">
+                <div class="figure-caption">Posición correcta (✓) e incorrecta (✗) de la cabeza del trípode</div>
+            </div>
+
+            <div class="img-grid">
+                <div class="figure">
+                    <img src="images/tripode-estabilizar.png" alt="Estabilización" loading="lazy">
+                    <div class="figure-caption">Estabilización de patas</div>
                 </div>
-
-                <h4>Envío</h4>
-                <p>Al transportar el producto en tren, mar o aire, siempre utilice el embalaje original completo de CHC, contenedor de transporte y cartón, o su equivalente, para proteger contra golpes y vibraciones.</p>
-
-                <h3>8.2 Almacenamiento</h3>
-                <p>Respete los límites de temperatura para el almacenamiento del equipo, especialmente en verano si se transporta dentro de un vehículo. Consulte la "Hoja de datos del instrumento CTS-112R4" para obtener información sobre los límites de temperatura.</p>
-
-                <div class="card success">
-                    <div class="card-title">✅ Recomendación Final</div>
-                    <p>Para mantener la precisión y durabilidad del instrumento, realice calibraciones periódicas y mantenga el equipo limpio y seco después de cada uso.</p>
+                <div class="figure">
+                    <img src="images/tripode-nivelar.png" alt="Nivelación" loading="lazy">
+                    <div class="figure-caption">Tornillos nivelantes A, B, C</div>
                 </div>
-            </section>
+            </div>
 
-            <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--border); text-align: center; color: var(--text-light);">
-                <p><strong>CHC Navigation</strong> | CTS-112R4 Guía Rápida v2.0</p>
-                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Documento generado para uso operativo en campo</p>
-                <p style="margin-top: 0.5rem; font-size: 0.8rem;">Manual completo con imágenes de referencia</p>
-            </footer>
-        </main>
-    </div>
+            <h3>Procedimiento</h3>
+            <ol class="steps">
+                <li data-step="1">
+                    <div class="step-content">
+                        <p>Extender las patas del trípode y apretar los tornillos. La placa debe estar lo más horizontal posible.</p>
+                    </div>
+                </li>
+                <li data-step="2">
+                    <div class="step-content">
+                        <p>Presionar las patas en el suelo. La fuerza debe aplicarse a lo largo de las patas, no lateralmente.</p>
+                    </div>
+                </li>
+                <li data-step="3">
+                    <div class="step-content">
+                        <p>Proteger del sol directo y evitar cambios bruscos de temperatura.</p>
+                    </div>
+                </li>
+                <li data-step="4">
+                    <div class="step-content">
+                        <p>Colocar la estación total en el trípode y fijar con el tornillo central.</p>
+                    </div>
+                </li>
+                <li data-step="5">
+                    <div class="step-content">
+                        <p>Nivelar con la burbuja de ojo de buey girando los tornillos de pie.</p>
+                    </div>
+                </li>
+                <li data-step="6">
+                    <div class="step-content">
+                        <p>Encender y presionar <kbd>★</kbd> para activar la plomada láser.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section id="instrumento">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2>Descripción del Instrumento</h2>
+            </div>
+
+            <div class="figure">
+                <img src="images/instrumento-cara1.png" alt="Cara I" loading="lazy">
+                <div class="figure-caption">Vista frontal (Cara I) - Componentes a-j</div>
+            </div>
+
+            <div class="parts-grid">
+                <div class="part-item">
+                    <span class="part-letter">a</span>
+                    <span>Etiqueta láser</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">b</span>
+                    <span>Unidad Vertical</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">c</span>
+                    <span>Abrazadera Vertical</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">d</span>
+                    <span>Puerto SD</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">e</span>
+                    <span>Mini-USB</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">f</span>
+                    <span>Base nivelante</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">g</span>
+                    <span>Número de serie</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">h</span>
+                    <span>Nivel de burbuja</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">i</span>
+                    <span>Pantalla</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">j</span>
+                    <span>Teclado</span>
+                </div>
+            </div>
+
+            <div class="figure">
+                <img src="images/instrumento-cara2.png" alt="Cara II" loading="lazy">
+                <div class="figure-caption">Vista trasera (Cara II) - Componentes k-t</div>
+            </div>
+
+            <div class="parts-grid">
+                <div class="part-item">
+                    <span class="part-letter">k</span>
+                    <span>Asa de transporte</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">l</span>
+                    <span>De puntería</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">m</span>
+                    <span>Objetivo EDM</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">n</span>
+                    <span>Pantalla Cara II</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">o</span>
+                    <span>Teclado Cara II</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">p</span>
+                    <span>Plomada láser</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">q</span>
+                    <span>Tapa batería</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">r</span>
+                    <span>Abrazadera H</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">s</span>
+                    <span>Unidad Horizontal</span>
+                </div>
+                <div class="part-item">
+                    <span class="part-letter">t</span>
+                    <span>Tornillo nivelación</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="interfaz">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2>Interfaz de Usuario</h2>
+            </div>
+
+            <div class="figure">
+                <img src="images/teclado-completo.png" alt="Teclado" loading="lazy">
+                <div class="figure-caption">Distribución del teclado y pantalla</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">⌨️ Teclas principales</div>
+                <ul>
+                    <li><kbd>★</kbd> Función estrellas (reflector, brillo)</li>
+                    <li><kbd>⏻</kbd> Encendido/Apagado</li>
+                    <li><kbd>ANG</kbd> Medición de ángulos</li>
+                    <li><kbd>DIST</kbd> Medición de distancia</li>
+                    <li><kbd>CORD</kbd> Medición de coordenadas</li>
+                    <li><kbd>MENU</kbd> Menú principal</li>
+                    <li><kbd>ESC</kbd> Volver/Atrás</li>
+                    <li><kbd>ENT</kbd> Confirmar/Enter</li>
+                </ul>
+            </div>
+
+            <h3>Pantalla principal</h3>
+            <div class="screen-display">
+                <img src="images/pantalla-angulos.png" alt="Pantalla ángulos" loading="lazy">
+                <div class="screen-caption">Modo Medición de Ángulos</div>
+            </div>
+
+            <div class="screen-display">
+                <img src="images/pantalla-ajustes.png" alt="Ajustes" loading="lazy">
+                <div class="screen-caption">Menú de Ajustes - Temp, Presión, Prisma</div>
+            </div>
+        </section>
+
+        <section id="mediciones">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2>Mediciones</h2>
+            </div>
+
+            <h3>Medición de Ángulos</h3>
+            <div class="screen-display">
+                <img src="images/angulos-inicio.png" alt="Inicio" loading="lazy">
+                <div class="screen-caption">Pantalla inicial - Presione <kbd>ANG</kbd></div>
+            </div>
+
+            <ol class="steps">
+                <li data-step="1">
+                    <div class="step-content">
+                        <p>Presione <kbd>ANG</kbd> para entrar al modo de ángulos.</p>
+                    </div>
+                </li>
+                <li data-step="2">
+                    <div class="step-content">
+                        <p>Presione <kbd>F4</kbd> dos veces, luego <kbd>F3</kbd> (FILE) para crear archivo.</p>
+                    </div>
+                </li>
+                <li data-step="3">
+                    <div class="step-content">
+                        <p>Apunte al objetivo y bloquee los tornillos.</p>
+                    </div>
+                </li>
+                <li data-step="4">
+                    <div class="step-content">
+                        <p>Presione <kbd>OSET</kbd> <kbd>F2</kbd> para poner ángulo en cero.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="screen-display">
+                <img src="images/angulos-set-cero.png" alt="Set cero" loading="lazy">
+                <div class="screen-caption">Confirmar: ¿Establecer ángulo a 0°?</div>
+            </div>
+
+            <h3>Medición de Distancia</h3>
+            <div class="screen-display">
+                <img src="images/distancia-medida.png" alt="Distancia" loading="lazy">
+                <div class="screen-caption">Valores: SD (inclinada), HD (horizontal), VD (vertical)</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📏 Modos de medición</div>
+                <ul>
+                    <li>Medición única</li>
+                    <li>Medición 3 veces (promedio)</li>
+                    <li>Medición repetida</li>
+                    <li>Tracking (continuo)</li>
+                </ul>
+            </div>
+
+            <h3>Medición de Coordenadas</h3>
+            <div class="screen-display">
+                <img src="images/coordenadas-nez.png" alt="Coordenadas" loading="lazy">
+                <div class="screen-caption">Valores N (Norte), E (Este), Z (Elevación)</div>
+            </div>
+
+            <div class="screen-display">
+                <img src="images/coordenadas-occ-pt.png" alt="OCC.PT" loading="lazy">
+                <div class="screen-caption">Entrada del Punto de Ocupación</div>
+            </div>
+        </section>
+
+        <section id="estaca">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2>Estaca (Layout)</h2>
+            </div>
+
+            <div class="screen-display">
+                <img src="images/layout-menu-principal.png" alt="Menú Layout" loading="lazy">
+                <div class="screen-caption">Menú principal - Seleccione <kbd>2.LAYOUT</kbd></div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📍 Opciones de Layout</div>
+                <ul>
+                    <li><strong>OCC.PT INPUT:</strong> Establecer estación</li>
+                    <li><strong>BACKSIGHT:</strong> Dirección de referencia</li>
+                    <li><strong>LAYOUT PT:</strong> Replanteo de puntos</li>
+                    <li><strong>SIDE SHOT:</strong> Puntos de detalle</li>
+                </ul>
+            </div>
+
+            <div class="screen-display">
+                <img src="images/layout-calculado.png" alt="Calculado" loading="lazy">
+                <div class="screen-caption">Valores calculados: HR (ángulo), HD (distancia)</div>
+            </div>
+
+            <div class="screen-display">
+                <img src="images/layout-guia.png" alt="Guía" loading="lazy">
+                <div class="screen-caption">Modo Guía - Flechas indican dirección</div>
+            </div>
+
+            <h3>Tiro Lateral (Side Shot)</h3>
+            <div class="screen-display">
+                <img src="images/side-shot-pantalla.png" alt="Side Shot" loading="lazy">
+                <div class="screen-caption">Medición de puntos de detalle rápidos</div>
+            </div>
+        </section>
+
+        <section id="datos">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2>Gestión de Datos</h2>
+            </div>
+
+            <div class="screen-display">
+                <img src="images/datos-menu-memory.png" alt="Memory" loading="lazy">
+                <div class="screen-caption">Menú Memory Mgr - Opción 3</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💾 Formatos soportados</div>
+                <ul>
+                    <li><code>.TXT</code> - Archivo de texto</li>
+                    <li><code>.CSV</code> - Valores separados por comas</li>
+                    <li><code>.DAT</code> - Formato de datos</li>
+                </ul>
+            </div>
+
+            <div class="screen-display">
+                <img src="images/datos-file-maintain.png" alt="Archivos" loading="lazy">
+                <div class="screen-caption">Lista de archivos en la memoria</div>
+            </div>
+
+            <div class="screen-display">
+                <img src="images/datos-u-disk-mode.png" alt="USB" loading="lazy">
+                <div class="screen-caption">Modo U Disk - Conectado a PC vía USB</div>
+            </div>
+
+            <div class="card success">
+                <div class="card-header">
+                    <div class="card-icon">✅</div>
+                    <div class="card-title">Exportación automática</div>
+                </div>
+                <p>Al exportar se generan 4 archivos: <code>Name_600.TXT</code>, <code>Name_300.1X1</code>, <code>Name.DA1</code>, <code>Name.CSV</code></p>
+            </div>
+        </section>
+
+        <section id="cuidado">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2>Cuidado y Transporte</h2>
+            </div>
+
+            <div class="card warning">
+                <div class="card-header">
+                    <div class="card-icon">🚗</div>
+                    <div class="card-title">Transporte en vehículo</div>
+                </div>
+                <p>Nunca transporte el instrumento suelto. Use siempre el maletín original y asegúrelo bien.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📋 Checklist de transporte</div>
+                <ul>
+                    <li>✓ Usar maletín original</li>
+                    <li>✓ Proteger de golpes y vibraciones</li>
+                    <li>✓ Evitar temperaturas extremas</li>
+                    <li>✓ No dejar en vehículo expuesto al sol</li>
+                </ul>
+            </div>
+
+            <div class="card success">
+                <div class="card-header">
+                    <div class="card-icon">🛡️</div>
+                    <div class="card-title">Mantenimiento recomendado</div>
+                </div>
+                <p>Realice calibraciones periódicas y mantenga el equipo limpio y seco después de cada uso.</p>
+            </div>
+        </section>
+
+        <footer style="text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.875rem;">
+            <p style="margin-bottom: 8px;"><strong>CHC Navigation</strong></p>
+            <p>CTS-112R4 Guía Rápida v2.0</p>
+            <p style="margin-top: 16px; font-size: 0.75rem;">© 2024 Manual Digital</p>
+        </footer>
+    </main>
+
+    <!-- Botón flotante -->
+    <button class="fab" id="fab" aria-label="Volver arriba">↑</button>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">Desliza para continuar ↓</div>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Navegación
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const navOverlay = document.getElementById('navOverlay');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            navDrawer.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navDrawer.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+                // Marcar activo
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
             });
         });
 
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.toc a');
+        // Progreso de lectura
+        const progress = document.getElementById('progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progress.style.width = scrollPercent + '%';
+        });
 
+        // FAB - Volver arriba
+        const fab = document.getElementById('fab');
+        fab.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Mostrar/ocultar FAB
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            if (currentScroll > 300) {
+                fab.classList.remove('hidden');
+            } else {
+                fab.classList.add('hidden');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Scroll indicator
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        setTimeout(() => {
+            scrollIndicator.classList.add('visible');
+        }, 1000);
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                scrollIndicator.classList.remove('visible');
+            }
+        });
+
+        // Actualizar link activo en scroll
+        const sections = document.querySelectorAll('section[id]');
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
+                if (scrollY >= sectionTop - 100) {
                     current = section.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
-                link.style.background = '';
-                link.style.color = '';
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.style.background = 'var(--primary)';
-                    link.style.color = 'white';
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
                 }
             });
         });
+
+        // Gestos táctiles para cerrar menú
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (navDrawer.classList.contains('active') && touchEndX < touchStartX - 50) {
+                toggleMenu();
+            }
+        }
+
+        // Lazy loading para imágenes
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
     </script>
 </body>
 </html>
