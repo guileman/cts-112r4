@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual CHC CTS-112R4 - Guía Rápida</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066cc;
+            --secondary: #004499;
+            --accent: #ff6600;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #5a6c7d;
+            --border: #e1e8ed;
+            --warning: #ffcc00;
+            --danger: #e74c3c;
+            --success: #27ae60;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+
+        nav {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .sidebar h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .toc {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .toc a:hover {
+            background: var(--bg);
+            color: var(--primary);
+            padding-left: 1rem;
+        }
+
+        .toc .sub {
+            padding-left: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        main {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 140px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--secondary);
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
+            color: var(--text);
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--text-light);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .figure {
+            margin: 2rem 0;
+            text-align: center;
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .figure-caption {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .img-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .img-grid .figure {
+            margin: 0;
+        }
+
+        .card {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .card.warning {
+            background: #fffbeb;
+            border-left-color: var(--warning);
+        }
+
+        .card.danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+
+        .card.success {
+            background: #f0fdf4;
+            border-left-color: var(--success);
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .steps {
+            counter-reset: step;
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .steps li {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+            counter-increment: step;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        kbd {
+            background: #2d3748;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 0 #1a202c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: var(--bg);
+        }
+
+        .parts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .part-item {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .part-letter {
+            font-weight: 800;
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        .screen-display {
+            background: #2d3748;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            border: 3px solid #4a5568;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .screen-display img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .screen-caption {
+            color: #a0aec0;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        .laser-warning {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--warning);
+            border-radius: 50%;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+                order: -1;
+            }
+            
+            .toc {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .toc li {
+                margin: 0;
+            }
+            
+            .toc a {
+                background: var(--bg);
+                font-size: 0.85rem;
+            }
+            
+            main {
+                padding: 1.5rem;
+            }
+
+            .img-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            header, .sidebar {
+                display: none;
+            }
+            
+            main {
+                box-shadow: none;
+                border: none;
+            }
+
+            .figure {
+                break-inside: avoid;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div>
+                <div class="logo">CHC <span>CTS-112R4</span></div>
+                <div class="subtitle">Guía Rápida - Estación Total</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#seguridad">Seguridad</a></li>
+                    <li><a href="#configuracion">Configuración</a></li>
+                    <li><a href="#instrumento">Instrumento</a></li>
+                    <li><a href="#interfaz">Interfaz</a></li>
+                    <li><a href="#mediciones">Mediciones</a></li>
+                    <li><a href="#estaca">Estaca</a></li>
+                    <li><a href="#datos">Datos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Contenido</h3>
+            <ul class="toc">
+                <li><a href="#seguridad">1. Información Importante</a></li>
+                <li class="sub"><a href="#laser">Productos Láser</a></li>
+                <li><a href="#configuracion">2. Configuración</a></li>
+                <li><a href="#instrumento">3. Descripción del Instrumento</a></li>
+                <li><a href="#interfaz">4. Interfaz de Usuario</a></li>
+                <li class="sub"><a href="#teclado">Teclado</a></li>
+                <li class="sub"><a href="#nivelacion">Centrado y Nivelación</a></li>
+                <li><a href="#mediciones">5. Mediciones</a></li>
+                <li class="sub"><a href="#angulos">Medición de Ángulos</a></li>
+                <li class="sub"><a href="#distancia">Medida de Distancia</a></li>
+                <li class="sub"><a href="#coordenadas">Medición de Coordenadas</a></li>
+                <li><a href="#estaca">6. Estaca (Layout)</a></li>
+                <li class="sub"><a href="#layout-dist">Medida de Distancia</a></li>
+                <li class="sub"><a href="#side-shot">Tiro Lateral</a></li>
+                <li><a href="#datos">7. Gestión de Datos</a></li>
+                <li class="sub"><a href="#import-export">Importación/Exportación</a></li>
+                <li class="sub"><a href="#pc">Conexión PC</a></li>
+                <li><a href="#cuidado">8. Cuidado y Transporte</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <section id="intro">
+                <h1>Guía Rápida CHC CTS-112R4</h1>
+                <p>Esta guía contiene instrucciones importantes para la configuración y operación de la Estación Total CHC CTS-112R4. Incluye normas de seguridad, procedimientos de medición y gestión de datos.</p>
+                
+                <div class="card">
+                    <div class="card-title">📋 Uso Previsto</div>
+                    <ul>
+                        <li>Medición de ángulos horizontales y verticales</li>
+                        <li>Medición de distancias</li>
+                        <li>Grabación de medidas</li>
+                        <li>Visualización del eje de dirección y verticales</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🌍 Ambiente</div>
+                    <p>Adecuado para uso en ambientes apropiados para la habitación humana permanente. <strong>No es adecuado para uso en ambientes agresivos o extremos.</strong></p>
+                </div>
+            </section>
+
+            <section id="seguridad">
+                <h2>1. Información Importante sobre Instrumentos</h2>
+                
+                <div class="card warning">
+                    <div class="card-title"><span class="laser-warning">⚠️</span> Precaución General</div>
+                    <p>Este manual contiene normas de seguridad importantes. Lea atentamente antes de usar el equipo.</p>
+                </div>
+
+                <h3 id="laser">Productos Láser</h3>
+                <p>Los instrumentos contienen los siguientes productos láser:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto Láser</th>
+                            <th>Clase de Láser</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Módulo de medición electrónica de distancias (EDM) - mediciones con prisma</td>
+                            <td><strong>Clase 1</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Módulo EDM - mediciones sin reflector</td>
+                            <td><strong>Clase 3R</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Plomada láser</td>
+                            <td><strong>Clase 2</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card danger">
+                    <div class="card-title">⚠️ Precaución - Clase 3R</div>
+                    <p>Desde una perspectiva de seguridad, los productos láser de clase 3R deben tomar precauciones:</p>
+                    <ol>
+                        <li>Evitar la exposición directa del ojo a la viga</li>
+                        <li>No dirigir el rayo a terceros</li>
+                    </ol>
+                </div>
+
+                <div class="card warning">
+                    <div class="card-title">⚠️ Precaución - Clase 2</div>
+                    <p>Los productos láser de clase 2 no son intrínsecamente seguros para los ojos:</p>
+                    <ol>
+                        <li>Evitar mirar directamente al rayo</li>
+                        <li>Evitar dirigir el rayo a otras personas</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="configuracion">
+                <h2>2. Configuración de Estación Total</h2>
+                <p>Configuración del instrumento utilizando la plomada láser sobre una marca en el terreno.</p>
+
+                <div class="card">
+                    <div class="card-title">💡 Nota</div>
+                    <p>Siempre es posible estacionar el instrumento sin la necesidad de un punto marcado en el suelo.</p>
+                </div>
+
+                <div class="figure">
+                    <img src="images/tripode-posicion.png" alt="Posición correcta del trípode">
+                    <div class="figure-caption">Figura 1: Posición correcta (izquierda) e incorrecta (derecha) de la cabeza del trípode</div>
+                </div>
+
+                <h3>Procedimiento de Configuración</h3>
+                
+                <div class="img-grid">
+                    <div class="figure">
+                        <img src="images/tripode-estabilizar.png" alt="Estabilización del trípode">
+                        <div class="figure-caption">Figura 2: Estabilización de patas - método correcto (a) vs incorrecto (b)</div>
+                    </div>
+                    <div class="figure">
+                        <img src="images/tripode-nivelar.png" alt="Nivelación con tornillos">
+                        <div class="figure-caption">Figura 3: Uso de tornillos nivelantes (A, B, C)</div>
+                    </div>
+                </div>
+
+                <div class="figure">
+                    <img src="images/tripode-ajuste.png" alt="Ajuste del trípode">
+                    <div class="figure-caption">Figura 4: Ajuste de altura y centrado del instrumento</div>
+                </div>
+
+                <ol class="steps">
+                    <li>Extender las patas del trípode a la medida necesaria y apretar los tornillos. Coloque el trípode de manera que la placa sea lo más horizontal posible y las patas sean firmes en el suelo.</li>
+                    
+                    <li>Para garantizar estabilidad, presionar las patas en el suelo. La fuerza debe aplicarse a lo largo de las patas.</li>
+                    
+                    <li>Proteger el instrumento de la luz solar directa y evitar cambios bruscos de temperatura.</li>
+                    
+                    <li>Retire el instrumento del contenedor. Centre la estación total en el trípode y fíjelo con el tornillo de fijación.</li>
+                    
+                    <li>Nivelar aproximadamente con la burbuja de ojo de buey. Girar dos tornillos de pie juntos en direcciones opuestas. El dedo índice indica la dirección en que la burbuja debe moverse. Use el tercer tornillo para centrar la burbuja.</li>
+                    
+                    <li>Girar la plomada láser del instrumento. Encender la estación total y hacer clic en el botón de estrella <kbd>★</kbd> para hacer centrado y nivelación. La plomada láser se encenderá automáticamente. Use el botón de dirección para ajustar el brillo.</li>
+                    
+                    <li>Mover las patas del trípode y usar los tornillos de pie nivelante para centrar la plomada sobre el punto del suelo.</li>
+                    
+                    <li>Ajustar las patas del trípode para nivelar el nivel esférico.</li>
+                    
+                    <li>Usando la burbuja de ojo de buey, girar los tornillos de pie base nivelante para nivelar con precisión el instrumento.</li>
+                    
+                    <li>Ligeramente aflojar el tornillo de fijación central, mantener la base con ambas manos, y mover el instrumento para que el láser esté alineado con precisión sobre el punto.</li>
+                    
+                    <li>Repetir los pasos 9 y 10 hasta obtener la precisión requerida.</li>
+                </ol>
+            </section>
+
+            <section id="instrumento">
+                <h2>3. Descripción del Instrumento</h2>
+                
+                <h3>Componentes del Equipo - Cara I</h3>
+                <div class="figure">
+                    <img src="images/instrumento-cara1.png" alt="Componentes Cara I">
+                    <div class="figure-caption">Figura 5: Vista frontal del instrumento (Cara I)</div>
+                </div>
+
+                <div class="parts-grid">
+                    <div class="part-item"><span class="part-letter">a)</span> Etiqueta de clase Láser</div>
+                    <div class="part-item"><span class="part-letter">b)</span> Unidad Vertical</div>
+                    <div class="part-item"><span class="part-letter">c)</span> Abrazadera Vertical</div>
+                    <div class="part-item"><span class="part-letter">d)</span> Puerto de tarjeta SD</div>
+                    <div class="part-item"><span class="part-letter">e)</span> Mini-USB interfaz</div>
+                    <div class="part-item"><span class="part-letter">f)</span> Base nivelante</div>
+                    <div class="part-item"><span class="part-letter">g)</span> Número de serie del instrumento</div>
+                    <div class="part-item"><span class="part-letter">h)</span> Nivel de burbuja</div>
+                    <div class="part-item"><span class="part-letter">i)</span> Pantalla frontal</div>
+                    <div class="part-item"><span class="part-letter">j)</span> Cara teclado</div>
+                </div>
+
+                <h3>Componentes del Equipo - Cara II</h3>
+                <div class="figure">
+                    <img src="images/instrumento-cara2.png" alt="Componentes Cara II">
+                    <div class="figure-caption">Figura 6: Vista trasera del instrumento (Cara II)</div>
+                </div>
+
+                <div class="parts-grid">
+                    <div class="part-item"><span class="part-letter">k)</span> Asa de transporte con montaje tornillo</div>
+                    <div class="part-item"><span class="part-letter">l)</span> De puntería</div>
+                    <div class="part-item"><span class="part-letter">m)</span> Objetivo integrado con EDM</div>
+                    <div class="part-item"><span class="part-letter">n)</span> Pantalla de la cara II</div>
+                    <div class="part-item"><span class="part-letter">o)</span> Teclado cara II</div>
+                    <div class="part-item"><span class="part-letter">p)</span> Plomada láser</div>
+                    <div class="part-item"><span class="part-letter">q)</span> Tapa de la batería</div>
+                    <div class="part-item"><span class="part-letter">r)</span> Abrazadera horizontal</div>
+                    <div class="part-item"><span class="part-letter">s)</span> Unidad Horizontal</div>
+                    <div class="part-item"><span class="part-letter">t)</span> Tornillo de nivelación</div>
+                </div>
+            </section>
+
+            <section id="interfaz">
+                <h2>4. Interfaz de Usuario</h2>
+                
+                <h3 id="teclado">Descripción del Teclado</h3>
+                <p>Al encender la estación total, se mostrará la pantalla en modo de medición de ángulos (menú de tres líneas).</p>
+
+                <div class="figure">
+                    <img src="images/teclado-completo.png" alt="Teclado y pantalla">
+                    <div class="figure-caption">Figura 7: Distribución del teclado y pantalla</div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tecla</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><kbd>★</kbd></td>
+                            <td><strong>Botón de función estrellas:</strong> Elegir tipo de reflector, intensidad de plomada, iluminación de cruz y pantalla</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>⏻</kbd></td>
+                            <td><strong>Encendido/Apagado:</strong> Cambia el instrumento encendido o apagado</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>ANG</kbd></td>
+                            <td><strong>Medición de ángulos:</strong> Modo funcional de medición de ángulos</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>DIST</kbd></td>
+                            <td><strong>Medición de distancia:</strong> Modo funcional de medición de distancia</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>CORD</kbd></td>
+                            <td><strong>Medición de coordenadas:</strong> Modo de funcionamiento de coordenadas</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>MENU</kbd></td>
+                            <td><strong>Menú:</strong> Administrar puntos conocidos, replanteo, almacenamiento, versión y configuración</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>ESC</kbd></td>
+                            <td><strong>Escape:</strong> Salida de la interfaz actual</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>ENT</kbd></td>
+                            <td><strong>Enter:</strong> Confirma entrada y continúa al siguiente campo</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>F1-F4</kbd></td>
+                            <td><strong>Funciones variables:</strong> Asignadas a funciones mostradas en la parte inferior de la pantalla</td>
+                        </tr>
+                        <tr>
+                            <td>Alfanumérico</td>
+                            <td>Entrada de texto y valores numéricos</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="nivelacion">Centrado y Nivelación, Ajustes de Mediciones</h3>
+                
+                <div class="screen-display">
+                    <img src="images/pantalla-angulos.png" alt="Pantalla de ángulos">
+                    <div class="screen-caption">Pantalla principal - Modo Medición de Ángulos</div>
+                </div>
+
+                <ol>
+                    <li>Encienda la estación total y haga clic en el botón de estrella <kbd>★</kbd> para ir al menú de centrado y nivelación. La plomada láser se encenderá automáticamente.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/pantalla-ajustes.png" alt="Ajustes de medición">
+                        <div class="screen-caption">Menú de ajustes - Temperatura, Presión, Prisma, PPM</div>
+                    </div>
+
+                    <li>Use el botón de dirección para elegir el tipo de reflector o ajustar el brillo de la luz láser, brillo y contraste de pantalla.</li>
+                    <li>Presione <kbd>F3</kbd> para dejar la plomada láser encendida permanentemente.</li>
+                    <li>Presione <kbd>F4</kbd> para ajustar temperatura, presión, prisma y PPM (generalmente establecido por defecto).</li>
+                </ol>
+            </section>
+
+            <section id="mediciones">
+                <h2>5. Mediciones</h2>
+                
+                <h3 id="angulos">5.1 Medición de Ángulos</h3>
+                
+                <div class="screen-display">
+                    <img src="images/angulos-inicio.png" alt="Medición de ángulos">
+                    <div class="screen-caption">Pantalla de Medición de Ángulos - Vista inicial</div>
+                </div>
+
+                <ol>
+                    <li>Encienda la estación total y haga clic en <kbd>ANG</kbd>.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/angulos-menu-file.png" alt="Menú de archivo">
+                        <div class="screen-caption">Página 3 - Opciones CPMS, R/L, FILE</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>F4</kbd> dos veces y luego en <kbd>F3</kbd> (FILE) para crear un nuevo archivo.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/angulos-crear-archivo.png" alt="Crear archivo">
+                        <div class="screen-caption">Creación de archivo de medición</div>
+                    </div>
+
+                    <li>Ingrese el nombre del archivo y confirme.</li>
+                    <li>Apunte al objetivo y bloquee los tornillos de sujeción vertical y horizontal.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/angulos-set-cero.png" alt="Setear ángulo a cero">
+                        <div class="screen-caption">Confirmación - ¿Establecer ángulo horizontal a 0?</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>OSET</kbd> <kbd>F2</kbd> para ajustar el ángulo Hz a 0.</li>
+                    <li>Haga clic en <kbd>SI</kbd> <kbd>F4</kbd> para confirmar.</li>
+                    <li>Apunte al siguiente objetivo.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/angulos-grabar.png" alt="Grabar ángulo">
+                        <div class="screen-caption">Grabar medición de ángulo - REC?</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>REC?</kbd> <kbd>F1</kbd> para registrar el ángulo.</li>
+                </ol>
+
+                <h3 id="distancia">5.2 Medida de Distancia</h3>
+                
+                <div class="screen-display">
+                    <img src="images/distancia-medida.png" alt="Medición de distancia">
+                    <div class="screen-caption">Pantalla de Medición de Distancia - SD, HD, VD</div>
+                </div>
+
+                <ol>
+                    <li>Encienda la estación total y haga clic en <kbd>DIST</kbd>.</li>
+                    <li>Para crear un nuevo archivo, consulte el procedimiento anterior; de lo contrario, los datos se almacenarán en el último proyecto.</li>
+                    <li>Apunte al objetivo y haga clic en <kbd>MEAS</kbd> <kbd>F2</kbd> para medir la distancia.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/distancia-grabar.png" alt="Grabar distancia">
+                        <div class="screen-caption">Grabar datos de distancia - REC?</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>REC?</kbd> <kbd>F1</kbd> para grabar los datos. Seleccione <kbd>SI</kbd> <kbd>F4</kbd> para confirmar.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/distancia-offset.png" alt="Modos de medición">
+                        <div class="screen-caption">Página 2 - OFFSET, S.O, FILE</div>
+                    </div>
+
+                    <li>Puede pulsar <kbd>MODE</kbd> <kbd>F3</kbd> y seleccionar el modo de encuesta diferente. Hay 4 opciones:
+                        <ul>
+                            <li>Medir el tiempo 1</li>
+                            <li>Medida 3 veces</li>
+                            <li>Encuesta repetida</li>
+                            <li>Tracking</li>
+                        </ul>
+                    </li>
+                    <li>Haga clic en <kbd>F4</kbd> para usar la función de replanteo, distancia de desplazamiento y distancia.</li>
+                </ol>
+
+                <h3 id="coordenadas">5.3 Medición de Coordenadas</h3>
+                
+                <div class="screen-display">
+                    <img src="images/coordenadas-nez.png" alt="Medición de coordenadas">
+                    <div class="screen-caption">Pantalla de Coordenadas - N, E, Z</div>
+                </div>
+
+                <ol>
+                    <li>Haga clic en <kbd>CORD</kbd> y pulse <kbd>F4</kbd> para ir a la página 2. Para restablecer el punto de vista vaya a <kbd>BS</kbd> <kbd>F2</kbd>. <kbd>HT</kbd> <kbd>F1</kbd> para ajustar altura.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/coordenadas-occ-pt.png" alt="Punto de ocupación">
+                        <div class="screen-caption">Entrada de Punto de Ocupación (OCC.PT)</div>
+                    </div>
+
+                    <li>Primero debe ingresar el punto de estación de la estación total. El punto puede ser de la lista (haga clic en <kbd>LIST</kbd> <kbd>F2</kbd>) o introducir coordenadas manualmente.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/coordenadas-ins-ht.png" alt="Altura del instrumento">
+                        <div class="screen-caption">Entrada de Altura del Instrumento (INS.HT)</div>
+                    </div>
+
+                    <li>Mida e ingrese la altura de la estación total. Pulse <kbd>ENT</kbd> <kbd>F4</kbd> para confirmar.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/coordenadas-bks-pt.png" alt="Punto de retrovisión">
+                        <div class="screen-caption">Entrada de Punto de Retrovisión (BKS PT)</div>
+                    </div>
+
+                    <li>La página siguiente le recordará que debe establecer el punto de retrovisión (BS). Confirme.</li>
+                    <li>Apunte al blanco y bloquee los tornillos. Ingrese las coordenadas BS y haga clic en <kbd>ENT</kbd> <kbd>F4</kbd>.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/coordenadas-backsight.png" alt="Confirmar retrovisión">
+                        <div class="screen-caption">Confirmación de ángulo de retrovisión</div>
+                    </div>
+
+                    <li>Una retrovisión aparecerá. Haga clic en <kbd>SI</kbd> para confirmar o vuelva a medir.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/coordenadas-r-ht.png" alt="Altura del objetivo">
+                        <div class="screen-caption">Entrada de Altura del Objetivo (R.HT)</div>
+                    </div>
+
+                    <li>Ingrese la altura del objetivo y pulse <kbd>ENT</kbd>.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/coordenadas-diferencias.png" alt="Diferencias de coordenadas">
+                        <div class="screen-caption">Visualización de diferencias (dN, dE, dZ)</div>
+                    </div>
+
+                    <li>Apunte al objetivo con el telescopio, haga clic en <kbd>F4</kbd>.</li>
+                    <li>Compruebe el error de coordenadas del punto de retrovisión. Haga clic en <kbd>F4</kbd> para medir las coordenadas.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/coordenadas-medir.png" alt="Medir coordenadas">
+                        <div class="screen-caption">Medición final de coordenadas</div>
+                    </div>
+
+                    <li>Vuelva a la Página 1 y haga clic en <kbd>MEAS</kbd> <kbd>F2</kbd> para medir las coordenadas del punto. Haga clic en <kbd>ALL</kbd> <kbd>F1</kbd> para grabar este punto.</li>
+                </ol>
+            </section>
+
+            <section id="estaca">
+                <h2>6. Estaca (Layout)</h2>
+                
+                <h3 id="layout-dist">6.1 Medida de Distancia</h3>
+                
+                <div class="screen-display">
+                    <img src="images/layout-menu-principal.png" alt="Menú principal">
+                    <div class="screen-caption">Menú Principal - Opción 2: LAYOUT</div>
+                </div>
+
+                <ol>
+                    <li>Encienda y haga clic en el botón <kbd>MENU</kbd>, luego haga clic en el teclado <kbd>2</kbd> para seleccionar la función de replanteo (LAYOUT).</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-lista-archivos.png" alt="Lista de archivos">
+                        <div class="screen-caption">Lista de archivos disponibles</div>
+                    </div>
+
+                    <li>Cargue un archivo de coordenadas, haga clic en <kbd>IMP.</kbd> <kbd>F2</kbd> para elegir un archivo existente en la lista.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-importar.png" alt="Importar archivo">
+                        <div class="screen-caption">Importar desde archivo CSV/TXT</div>
+                    </div>
+
+                    <li>También puede importar puntos de la tarjeta SD. Haga clic en <kbd>IMP.</kbd> <kbd>F2</kbd> para importar puntos de otro archivo seleccionado.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-menu-opciones.png" alt="Menú Layout">
+                        <div class="screen-caption">Menú LAYOUT - OCC.PT INPUT, BACKSIGHT, LAYOUT PT, SIDE SHOT</div>
+                    </div>
+
+                    <li>La estación total mostrará las opciones de Layout:
+                        <ul>
+                            <li><strong>OCC.PT INPUT:</strong> Insertar coordenadas de estación total</li>
+                            <li><strong>BACKSIGHT:</strong> Determinar la dirección</li>
+                            <li><strong>LAYOUT PT:</strong> Replanteo de puntos</li>
+                            <li><strong>SIDE SHOT:</strong> Medir un punto de tiro</li>
+                        </ul>
+                    </li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-occ-pt-input.png" alt="Entrada OCC.PT">
+                        <div class="screen-caption">Entrada de Punto de Ocupación para Layout</div>
+                    </div>
+
+                    <li>Presione <kbd>1</kbd> para elegir coordenadas de punto de ocupación. Entrada conocida de punto de coordenadas o elija el punto de la lista.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-set-backsight.png" alt="Establecer retrovisión">
+                        <div class="screen-caption">¿Establecer punto de retrovisión?</div>
+                    </div>
+
+                    <li>Retrovisión: Entrada de coordenadas o selección de lista.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-seleccionar-punto.png" alt="Seleccionar punto">
+                        <div class="screen-caption">Selección de punto para replanteo</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>3</kbd> para replantear puntos conocidos. Hay dos opciones: entrada manual o selección de lista.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-input-r-ht.png" alt="Altura prisma">
+                        <div class="screen-caption">Entrada de altura del prisma (R.HT)</div>
+                    </div>
+
+                    <li>Ingrese la altura del prisma y haga clic en <kbd>ENT</kbd>.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-calculado.png" alt="Cálculo layout">
+                        <div class="screen-caption">Valores calculados de replanteo (HR, HD)</div>
+                    </div>
+
+                    <li>La interfaz mostrará el resultado calculado del replanteo. Elija <kbd>DIST</kbd> <kbd>F1</kbd> o <kbd>NEZ</kbd> <kbd>F2</kbd> para cambiar entre interfaces.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-diferencias.png" alt="Diferencias layout">
+                        <div class="screen-caption">Diferencias de replanteo (dHR, dHD, dZ)</div>
+                    </div>
+
+                    <li><kbd>MEAS</kbd> <kbd>F1</kbd> para medir y obtener la distancia entre el punto replanteado y el objetivo.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/layout-guia.png" alt="Guía de replanteo">
+                        <div class="screen-caption">Modo Guía de Replanteo - Indicadores direccionales</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>GUIDE</kbd> <kbd>F3</kbd> para entrar en el modo de guía de replanteo. Gire la estación total para apuntar al blanco, <kbd>MEAS</kbd> <kbd>F1</kbd> para medir. Finalmente encontrará el punto de diseño.</li>
+                </ol>
+
+                <h3 id="side-shot">6.2 Tiro Lateral (Side Shot)</h3>
+                
+                <div class="screen-display">
+                    <img src="images/layout-menu-side-shot.png" alt="Menú Side Shot">
+                    <div class="screen-caption">Menú LAYOUT - Opción 4: SIDE SHOT</div>
+                </div>
+
+                <ol>
+                    <li>El tiro lateral se utiliza para estudiar y establecer un punto como punto de referencia.</li>
+                    <li>Seleccione <kbd>4.SIDE SHOT</kbd> en el menú LAYOUT.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/side-shot-pantalla.png" alt="Pantalla Side Shot">
+                        <div class="screen-caption">Pantalla de Tiro Lateral</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>MEAS</kbd> <kbd>F4</kbd> para medir el punto y grabarlo.</li>
+                </ol>
+            </section>
+
+            <section id="datos">
+                <h2>7. Gestión de Datos</h2>
+                
+                <h3 id="import-export">7.1 Importación y Exportación de Datos</h3>
+                
+                <div class="screen-display">
+                    <img src="images/datos-menu-memory.png" alt="Menú Memory">
+                    <div class="screen-caption">Menú Principal - Opción 3: MEMORY MGR</div>
+                </div>
+
+                <ol>
+                    <li>Encienda y haga clic en <kbd>MENU</kbd>, luego haga clic en <kbd>3</kbd> para elegir MEMORY MGR (Gestión de Memoria).</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/datos-memory-mgr.png" alt="Memory Manager">
+                        <div class="screen-caption">Menú Memory Manager</div>
+                    </div>
+
+                    <li>Acceda a la función de gestión de archivos.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/datos-file-maintain.png" alt="File Maintain">
+                        <div class="screen-caption">Mantenimiento de Archivos - Lista de archivos</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>1</kbd> para seleccionar un archivo existente o crear uno nuevo. Haga clic en <kbd>NEW</kbd> <kbd>F1</kbd> para crear nuevo archivo.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/datos-archivo-importado.png" alt="Archivo importado">
+                        <div class="screen-caption">Archivo importado en la lista</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>IMP.</kbd> <kbd>F2</kbd> para elegir el archivo a importar. El CTS-112R4 admite archivos <code>.TXT</code>, <code>.CSV</code> y <code>.DAT</code>.</li>
+                    
+                    <div class="screen-display">
+                        <img src="images/datos-opciones-archivo.png" alt="Opciones de archivo">
+                        <div class="screen-caption">Opciones de archivo: ATTR, RENAME, DEL</div>
+                    </div>
+
+                    <li>Haga clic en <kbd>EXP.</kbd> <kbd>F3</kbd> para exportar datos. Se crearán automáticamente cuatro archivos en la tarjeta SD:
+                        <ul>
+                            <li><code>Name_600.TXT</code></li>
+                            <li><code>Name_300.1X1</code></li>
+                            <li><code>Name.DA1</code></li>
+                            <li><code>Name.CSV</code></li>
+                        </ul>
+                    </li>
+                    <li>Elija <kbd>F4</kbd> para ver atributos de archivo, cambiar nombre o borrar archivos.</li>
+                </ol>
+
+                <h3 id="pc">7.2 Importación y Exportación de Datos a PC</h3>
+                
+                <div class="screen-display">
+                    <img src="images/datos-u-disk-mode.png" alt="U Disk Mode">
+                    <div class="screen-caption">Modo U Disk - Conectado a PC</div>
+                </div>
+
+                <ol>
+                    <li>Conecte la PC a través del puerto mini-USB usando un cable mini-USB (incluido en el contenedor).</li>
+                    <li>Haga clic en el botón del teclado <kbd>5</kbd> para conectar la estación total a la PC.</li>
+                    <li>La estación total puede ser vista como lector de tarjetas (U Disk Mode).</li>
+                    <li>El CTS-112R4 soporta importación y exportación de datos a PC.</li>
+                </ol>
+            </section>
+
+            <section id="cuidado">
+                <h2>8. Cuidado y Transporte</h2>
+                
+                <h3>8.1 Transporte</h3>
+                
+                <h4>Transporte en el Campo</h4>
+                <ul>
+                    <li>Llevar el instrumento en su maletín original</li>
+                    <li>O llevar el trípode con las patas abiertas encima del hombro, con el instrumento colocado en posición vertical</li>
+                </ul>
+
+                <h4>Transporte en Vehículo</h4>
+                <div class="card warning">
+                    <div class="card-title">⚠️ Importante</div>
+                    <p>No lleve nunca el instrumento suelto en un vehículo de carretera, ya que puede resultar dañado por golpes y vibraciones. Siempre transporte el instrumento en su maletín y bien asegurado.</p>
+                </div>
+
+                <h4>Envío</h4>
+                <p>Al transportar el producto en tren, mar o aire, siempre utilice el embalaje original completo de CHC, contenedor de transporte y cartón, o su equivalente, para proteger contra golpes y vibraciones.</p>
+
+                <h3>8.2 Almacenamiento</h3>
+                <p>Respete los límites de temperatura para el almacenamiento del equipo, especialmente en verano si se transporta dentro de un vehículo. Consulte la "Hoja de datos del instrumento CTS-112R4" para obtener información sobre los límites de temperatura.</p>
+
+                <div class="card success">
+                    <div class="card-title">✅ Recomendación Final</div>
+                    <p>Para mantener la precisión y durabilidad del instrumento, realice calibraciones periódicas y mantenga el equipo limpio y seco después de cada uso.</p>
+                </div>
+            </section>
+
+            <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--border); text-align: center; color: var(--text-light);">
+                <p><strong>CHC Navigation</strong> | CTS-112R4 Guía Rápida v2.0</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Documento generado para uso operativo en campo</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">Manual completo con imágenes de referencia</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.toc a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                link.style.color = '';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.background = 'var(--primary)';
+                    link.style.color = 'white';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
